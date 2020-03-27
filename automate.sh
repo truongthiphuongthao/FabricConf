@@ -10,7 +10,7 @@ peer lifecycle chaincode package $name.tar.gz --path $path --lang node --label f
 . scripts/envVar.sh
 
 setGlobals 1
-peer lifecycle chaincode install fabcar.tar.gz
+peer lifecycle chaincode install $name.tar.gz
 
 setGlobals 2
-peer lifecycle chaincode install fabcar.tar.gz
+peer lifecycle chaincode install $name.tar.gz
