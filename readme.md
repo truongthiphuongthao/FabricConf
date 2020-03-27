@@ -52,12 +52,13 @@ You may want to copy the id ```fabcar_1:6855a6a6462c259b63356fe39258ebc6b929fc2c
 
 6. Approve chaincode on every org, then autocommit:
 ```
-./approve.sh <id>
+./approve.sh <package_name> <package_id>
 ```
 For example:	
 
 ```
-./approve.sh fabcar_1:6855a6a6462c259b63356fe39258ebc6b929fc2c5f762e105d3e6a5dae3aebec
+./approve.sh
+fabcar fabcar_1:6855a6a6462c259b63356fe39258ebc6b929fc2c5f762e105d3e6a5dae3aebec
 ```
 
 8. Query chaincode, finish, now we should move to 'application', where examples about chaincode 'minging' is going to be elaborated:
