@@ -35,40 +35,23 @@ sudo chmod -R 777 organizations
 ```
 sudo ./network.sh createChannel -c mychannel
 ```
-4. Package and deploy the chaincode
-```
-./automate <path/to/folder/containing/chaincode> <chaincode/package>
-```
-if we would like to install ./fabcar, which is written in javascript for example, we should:
-```
-./automate.sh ./fabcar fabcar
-```
+4. Package and deploy the chaincode:
 
-After running the script, we should see something be like:
+'initLedger' will be automatically called
 ```
-Chaincode code package identifier: fabcar_1:6855a6a6462c259b63356fe39258ebc6b929fc2c5f762e105d3e6a5dae3aebec
+./automate.sh <path/to/folder/containing/chaincode> <chaincode_name> <chaincode_version>
 ```
-You may want to copy the id ```fabcar_1:6855a6a6462c259b63356fe39258ebc6b929fc2c5f762e105d3e6a5dae3aebec``` (not this id, actual id after your deploy instead)
-
-6. Approve chaincode on every org, then autocommit:
-```
-./approve.sh <package_name> <package_id>
-```
-For example:	
+example:
 
 ```
-./approve.sh
-fabcar fabcar_1:6855a6a6462c259b63356fe39258ebc6b929fc2c5f762e105d3e6a5dae3aebec
+./automate.sh ../chaincode/fabcar/javascript fabcar 1
 ```
 
-8. Query chaincode, finish, now we should move to 'application', where examples about chaincode 'minging' is going to be elaborated:
+
+5. Query chaincode, finish, now we should move to 'application', where examples about chaincode 'minging' is going to be elaborated:
 
 With node as chaincode example (either go, typescript, python are accepted), we could try something like
 
-```
-peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls true --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n fabcar --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --isInit -c '{"function":"initLedger","Args":[]}'
-```
-Then 
 ```
 peer chaincode query -C mychannel -n fabcar -c '{"Args":["queryAllCars"]}'
 ```
